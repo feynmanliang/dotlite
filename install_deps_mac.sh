@@ -6,7 +6,7 @@ brew install \
   libyaml readline libxslt libtool unixodbc \
   zlib unzip git curl gnupg2
 brew install fish tmux neovim
-brew install ripgrep ghq hub
+brew install ripgrep ghq hub urlview
 
 # homebrew
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
