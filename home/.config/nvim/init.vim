@@ -17,9 +17,12 @@ Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
+Plug 'mbbill/undotree'
 
 Plug 'w0rp/ale'
 Plug 'tpope/vim-sleuth'
+Plug 'ntpeters/vim-better-whitespace'
+
 Plug 'sheerun/vim-polyglot'
 
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -64,6 +67,7 @@ let mapleader=","
 nnoremap <leader>n :NERDTreeToggle<CR>
 nnoremap <leader>e :NERDTreeFind<CR>
 nnoremap <leader>t :TagbarToggle<CR>
+nnoremap <leader>u :UndotreeToggle<CR>
 
 nmap <C-p> :Files<CR>
 nnoremap <silent> <C-l> :Rg <C-R><C-W><CR>
@@ -73,3 +77,10 @@ nmap ; :Buffers<CR>
 nnoremap <leader>gs :Gstatus<CR>
 nnoremap <leader>gc :Gcommit<CR>
 nnoremap <leader>gp :Gpush<CR>
+
+set shell=/bin/bash
+set ignorecase
+set smartcase
+
+let g:better_whitespace_enabled=1
+let g:strip_whitespace_on_save=1

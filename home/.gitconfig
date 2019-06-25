@@ -5,3 +5,5 @@
 [user]
 	name = Feynman Liang
 	email = feynman@infinitus.ai
+[merge]
+	tool = nvimdiff
