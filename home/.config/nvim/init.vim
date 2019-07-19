@@ -28,10 +28,44 @@ Plug 'sheerun/vim-polyglot'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
 Plug 'fatih/vim-go'
+Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
+
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 
 call plug#end()
 
 let g:deoplete#enable_at_startup = 1
+
+let mapleader=","
+
+nnoremap <leader>n :NERDTreeToggle<CR>
+nnoremap <leader>e :NERDTreeFind<CR>
+nnoremap <leader>t :TagbarToggle<CR>
+nnoremap <leader>u :UndotreeToggle<CR>
+
+nmap <C-p> :Files<CR>
+nnoremap <silent> <C-l> :Rg <C-R><C-W><CR>
+
+nmap ; :Buffers<CR>
+
+nnoremap <leader>gs :Gstatus<CR>
+nnoremap <leader>gc :Gcommit<CR>
+nnoremap <leader>gp :Gpush<CR>
+
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+set shell=/bin/bash
+set ignorecase
+set smartcase
+
+let g:better_whitespace_enabled=1
+let g:strip_whitespace_on_save=1
+
+set undofile
+set undodir=$HOME/.vimundo/
 
 " Tagbar gotags
 let g:tagbar_type_go = {
@@ -62,25 +96,3 @@ let g:tagbar_type_go = {
 	\ 'ctagsargs' : '-sort -silent'
 \ }
 
-let mapleader=","
-
-nnoremap <leader>n :NERDTreeToggle<CR>
-nnoremap <leader>e :NERDTreeFind<CR>
-nnoremap <leader>t :TagbarToggle<CR>
-nnoremap <leader>u :UndotreeToggle<CR>
-
-nmap <C-p> :Files<CR>
-nnoremap <silent> <C-l> :Rg <C-R><C-W><CR>
-
-nmap ; :Buffers<CR>
-
-nnoremap <leader>gs :Gstatus<CR>
-nnoremap <leader>gc :Gcommit<CR>
-nnoremap <leader>gp :Gpush<CR>
-
-set shell=/bin/bash
-set ignorecase
-set smartcase
-
-let g:better_whitespace_enabled=1
-let g:strip_whitespace_on_save=1

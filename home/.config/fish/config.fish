@@ -1,7 +1,7 @@
 fish_vi_key_bindings
 
 set -gx PATH ~/bin ~/.homesick/repos/homeshick/bin $PATH
-#set -gx GOPATH ~/go
+set -gx GOPATH ~/go
 
 set -gx FZF_DEFAULT_COMMAND  'rg --files --hidden'
 set -gx EDITOR 'nvim'
