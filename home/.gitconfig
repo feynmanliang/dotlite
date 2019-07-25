@@ -1,9 +1,11 @@
-[url "git@github.com:"]
-	insteadOf = https://github.com/
-[url "git@gitlab.com:"]
-	insteadOf = https://gitlab.com/
+; [url "git@github.com:"]
+; 	insteadOf = https://github.com/
+; [url "git@gitlab.com:"]
+; 	insteadOf = https://gitlab.com/
 [user]
 	name = Feynman Liang
 	email = feynman@infinitus.ai
 [merge]
 	tool = nvimdiff
+[credential]
+	helper = osxkeychain
