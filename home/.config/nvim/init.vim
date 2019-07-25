@@ -1,9 +1,14 @@
 call plug#begin('~/.vim/plugged')
 
+let g:python_host_prog='/home/feynman/.asdf/installs/python/2.7.16/bin/python'
+let g:python3_host_prog='/home/feynman/.asdf/installs/python/3.7.3/bin/python'
+
 Plug 'jeffkreeftmeijer/neovim-sensible'
 
-Plug 'junegunn/seoul256.vim'
+Plug 'lambdalisue/suda.vim'
+
 Plug 'itchyny/lightline.vim'
+Plug 'dylanaraps/wal.vim'
 
 Plug 'scrooloose/nerdtree'
 Plug 'majutsushi/tagbar'
@@ -35,6 +40,11 @@ Plug 'honza/vim-snippets'
 
 call plug#end()
 
+colorscheme wal
+let g:lightline = {
+      \ 'colorscheme': 'wal',
+      \ }
+
 let g:deoplete#enable_at_startup = 1
 
 let mapleader=","
@@ -63,6 +73,9 @@ set smartcase
 
 let g:better_whitespace_enabled=1
 let g:strip_whitespace_on_save=1
+
+let g:LatexBox_latexmk_async = 1
+let g:LatexBox_latexmk_preview_continuously = 1
 
 set undofile
 set undodir=$HOME/.vimundo/
@@ -95,4 +108,3 @@ let g:tagbar_type_go = {
 	\ 'ctagsbin'  : 'gotags',
 	\ 'ctagsargs' : '-sort -silent'
 \ }
-
