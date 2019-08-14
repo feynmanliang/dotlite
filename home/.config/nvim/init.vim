@@ -29,11 +29,14 @@ Plug 'tpope/vim-sleuth'
 Plug 'ntpeters/vim-better-whitespace'
 
 Plug 'sheerun/vim-polyglot'
+Plug 'jiangmiao/auto-pairs'
 
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
 Plug 'fatih/vim-go'
 Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
+
+Plug 'deoplete-plugins/deoplete-jedi'
 
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
