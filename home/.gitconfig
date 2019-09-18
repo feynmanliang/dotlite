@@ -6,6 +6,6 @@
 	name = Feynman Liang
 	email = feynman@infinitus.ai
 [merge]
-	tool = vimdiff
-[credential]
-	helper = osxkeychain
+	tool = nvim
+[mergetool "nvim"]
+  cmd = nvim -f -c \"Gdiffsplit!\" \"$MERGED\"
