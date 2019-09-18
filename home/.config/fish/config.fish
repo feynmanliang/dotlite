@@ -8,6 +8,7 @@ set -gx GOPATH ~/go
 
 set -gx FZF_DEFAULT_COMMAND  'rg --files --hidden --ignore-file .git/'
 set -gx EDITOR 'nvim'
+set -gx GPG_TTY (tty)
 
 set -gx CLOUDSDK_PYTHON /usr/bin/python2
 
@@ -16,6 +17,8 @@ source ~/.config/fish/aliases.fish
 if test -z $ASDF_DIR
   source ~/.asdf/asdf.fish
 end
+
+# cat ~/.cache/wal/sequences &
 
 direnv hook fish | source
 

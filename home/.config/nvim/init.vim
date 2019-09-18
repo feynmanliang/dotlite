@@ -6,9 +6,13 @@ endif
 
 call plug#begin('~/.config/nvim/plugged')
 
+let g:python_host_prog='/home/feynman/.asdf/installs/python/2.7.16/bin/python'
+let g:python3_host_prog='/home/feynman/.asdf/installs/python/3.7.3/bin/python'
+
 Plug 'jeffkreeftmeijer/neovim-sensible'
 
-Plug 'junegunn/seoul256.vim'
+Plug 'lambdalisue/suda.vim'
+
 Plug 'itchyny/lightline.vim'
 
 Plug 'scrooloose/nerdtree'
@@ -49,8 +53,6 @@ Plug 'deoplete-plugins/deoplete-go', { 'do': 'make'}
 Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
 
 Plug 'deoplete-plugins/deoplete-jedi'
-
-
 
 call plug#end()
 
@@ -143,4 +145,3 @@ let g:tagbar_type_go = {
 	\ 'ctagsbin'  : 'gotags',
 	\ 'ctagsargs' : '-sort -silent'
 \ }
-
