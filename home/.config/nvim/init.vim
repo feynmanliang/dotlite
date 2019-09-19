@@ -1,22 +1,26 @@
+" vim:fdm=marker
+let g:python_host_prog='/home/feynman/.asdf/installs/python/2.7.16/bin/python'
+let g:python3_host_prog='/home/feynman/.asdf/installs/python/3.7.3/bin/python'
+
+"" Install vim-plug if missing {{{
 if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
 	silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
           \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 	autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
+" }}}
 
+" Plugins {{{
 call plug#begin('~/.config/nvim/plugged')
-
-let g:python_host_prog='/home/feynman/.asdf/installs/python/2.7.16/bin/python'
-let g:python3_host_prog='/home/feynman/.asdf/installs/python/3.7.3/bin/python'
-
-Plug 'jeffkreeftmeijer/neovim-sensible'
-
-Plug 'lambdalisue/suda.vim'
 
 Plug 'itchyny/lightline.vim'
 
+Plug 'lambdalisue/suda.vim'
+Plug 'mhinz/neovim-remote'
+
 Plug 'scrooloose/nerdtree'
 Plug 'majutsushi/tagbar'
+Plug 'mbbill/undotree'
 
 Plug 'tpope/vim-fugitive'
 Plug 'Xuyuanp/nerdtree-git-plugin'
@@ -28,35 +32,37 @@ Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
-Plug 'mbbill/undotree'
+Plug 'justinmk/vim-sneak'
 
-Plug 'sheerun/vim-polyglot'
 Plug 'w0rp/ale'
 Plug 'tpope/vim-sleuth'
+Plug 'sheerun/vim-polyglot'
 Plug 'ntpeters/vim-better-whitespace'
 
 let g:polyglot_disabled = ['tex','latex','plaintex']
-Plug 'lervag/vimtex'
-Plug 'mhinz/neovim-remote'
 let g:vimtex_compiler_progname = 'nvr'
+let g:latex_view_general_viewer = 'zathura'
+let g:vimtex_view_method = "zathura"
+let g:tex_flavor = 'latex'
+let g:sneak#label = 1
 
-Plug 'jiangmiao/auto-pairs'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'lervag/vimtex'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'deoplete-plugins/deoplete-go', { 'do': 'make'}
+Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
+Plug 'deoplete-plugins/deoplete-jedi'
+
 Plug 'Shougo/neosnippet.vim'
 Plug 'Shougo/neosnippet-snippets'
 Plug 'honza/vim-snippets'
 
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-Plug 'deoplete-plugins/deoplete-go', { 'do': 'make'}
-
-Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
-
-Plug 'deoplete-plugins/deoplete-jedi'
-
 call plug#end()
+" }}}
 
+set number
 set clipboard+=unnamedplus
+set conceallevel=0
 
 filetype plugin on
 
@@ -65,6 +71,11 @@ let g:deoplete#sources#go#gocode_binary = $GOPATH.'/bin/gocode'
 let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const']
 let g:deoplete#sources#go#source_importer = 1
 
+call deoplete#custom#var('omni', 'input_patterns', {
+  \ 'tex': g:vimtex#re#deoplete
+  \})
+
+" Key mappings {{{
 let mapleader=","
 
 nnoremap <leader>n :NERDTreeToggle<CR>
@@ -86,26 +97,17 @@ nnoremap <leader>gp :Gpush<CR>
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
 smap <C-k>     <Plug>(neosnippet_expand_or_jump)
 xmap <C-k>     <Plug>(neosnippet_expand_target)
+" }}}
 
-" SuperTab like snippets behavior.
-" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
-imap <expr><TAB>
- \ pumvisible() ? "\<C-n>" :
- \ neosnippet#expandable_or_jumpable() ?
- \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-
-"let g:neosnippet#disable_runtime_snippets = 1
 let g:neosnippet#enable_snipmate_compatibility = 1
 let g:neosnippet#snippets_directory='~/.vim/plugged/vim-snippets/snippets'
 
-" For conceal markers.
-" if has('conceal')
-"   set conceallevel=2 concealcursor=niv
-" endif
-
-
+let g:polyglot_disabled = ['tex','latex','plaintex']
+let g:vimtex_compiler_progname = 'nvr'
+let g:latex_view_general_viewer = 'zathura'
+let g:vimtex_view_method = "zathura"
+let g:tex_flavor = 'latex'
+let g:sneak#label = 1
 
 set shell=/bin/bash
 set ignorecase
@@ -116,32 +118,3 @@ let g:strip_whitespace_on_save=1
 
 set undofile
 set undodir=$HOME/.vimundo/
-
-" Tagbar gotags
-let g:tagbar_type_go = {
-	\ 'ctagstype' : 'go',
-	\ 'kinds'     : [
-		\ 'p:package',
-		\ 'i:imports:1',
-		\ 'c:constants',
-		\ 'v:variables',
-		\ 't:types',
-		\ 'n:interfaces',
-		\ 'w:fields',
-		\ 'e:embedded',
-		\ 'm:methods',
-		\ 'r:constructor',
-		\ 'f:functions'
-	\ ],
-	\ 'sro' : '.',
-	\ 'kind2scope' : {
-		\ 't' : 'ctype',
-		\ 'n' : 'ntype'
-	\ },
-	\ 'scope2kind' : {
-		\ 'ctype' : 't',
-		\ 'ntype' : 'n'
-	\ },
-	\ 'ctagsbin'  : 'gotags',
-	\ 'ctagsargs' : '-sort -silent'
-\ }
