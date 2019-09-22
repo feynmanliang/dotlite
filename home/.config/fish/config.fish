@@ -15,7 +15,7 @@ set -gx CLOUDSDK_PYTHON /usr/bin/python2
 source ~/.config/fish/aliases.fish
 
 if test -z $ASDF_DIR
-  source ~/.asdf/asdf.fish
+  source /opt/asdf-vm/asdf.fish
 end
 
 # cat ~/.cache/wal/sequences &

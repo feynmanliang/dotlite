@@ -40,11 +40,10 @@ Plug 'sheerun/vim-polyglot'
 Plug 'ntpeters/vim-better-whitespace'
 
 let g:polyglot_disabled = ['tex','latex','plaintex']
-let g:vimtex_compiler_progname = 'nvr'
-let g:latex_view_general_viewer = 'zathura'
+
+let g:vimtex_compiler_progname = '/home/feynman/.asdf/installs/python/3.7.3/bin/nvr'
 let g:vimtex_view_method = "zathura"
 let g:tex_flavor = 'latex'
-let g:sneak#label = 1
 
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'lervag/vimtex'
@@ -61,8 +60,11 @@ call plug#end()
 " }}}
 
 set number
+set mouse=a
 set clipboard+=unnamedplus
 set conceallevel=0
+set colorcolumn=80
+set relativenumber
 
 filetype plugin on
 
@@ -107,7 +109,7 @@ let g:vimtex_compiler_progname = 'nvr'
 let g:latex_view_general_viewer = 'zathura'
 let g:vimtex_view_method = "zathura"
 let g:tex_flavor = 'latex'
-let g:sneak#label = 1
+let g:sneak#s_next = 1
 
 set shell=/bin/bash
 set ignorecase
